@@ -1,0 +1,14 @@
+{
+  "name": "color-clock",
+  "version": "1.0.0",
+  "author": "Daniel Kurashige-Gollub <daniel@kurashige-gollub.de>",
+  "description": "Implements a color clock using seven-segment displays.",
+  "private": true,
+  "main": "src/js/index.js",
+  "scripts": {
+    "serve": "parcel -p 8000 src/index.html"
+  },
+  "dependencies": {
+    "parcel": "1.10.3"
+  }
+}
