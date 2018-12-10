@@ -9,7 +9,7 @@
 
 import Segment from './segment';
 import {
-  hexToRgb, rgbToHex, increaseAndWrapAround,
+  hexToRgb, rgbToHex,
 } from './utils';
 
 
@@ -37,9 +37,27 @@ export default class HexDisplay {
     };
 
     // update the color to the next one
-    const nr = increaseAndWrapAround(0, 255, r);
-    const ng = increaseAndWrapAround(0, 255, g);
-    const nb = increaseAndWrapAround(0, 255, b);
+    let nr = r;
+    let ng = g;
+    let nb = b;
+
+    if (nb >= 255) {
+      nb = 0;
+      ng++;
+    } else if (ng >= 255) {
+      ng = 0;
+      nr++;
+    } else if (nr >= 255) {
+      nr = 0;
+      ng = 0;
+      nb = 0;
+    } else {
+      nb++;
+    }
+
+    if (nr > 255) nr = 0;
+    if (ng > 255) ng = 0;
+    if (nb > 255) nb = 0;
 
     this.color = rgbToHex(nr, ng, nb);
 

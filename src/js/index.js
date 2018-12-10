@@ -25,6 +25,14 @@ const HEIGHT = WIDTH / (4 / 3);
 
 //// Utility Functions
 
+function getStartColorFromDate(date) {
+  const hours = `${date.getHours()}`.padStart(2, '0');
+  const minutes = `${date.getMinutes()}`.padStart(2, '0');
+  const seconds = `${date.getSeconds()}`.padStart(2, '0');
+ 
+  return `#${hours}${minutes}${seconds}`; 
+}
+
 function createCanvas(parent) {
   const canvas = document.createElement('canvas');
   canvas.width = WIDTH;
@@ -51,8 +59,9 @@ function drawStart(canvas) {
   const hexW = clockW;
   const hexH = clockH;
 
-  const hex = new Hex(hexX, hexY, hexW, hexH, padding);
-  const updatePerSeconds = 1;
+  const startColor = getStartColorFromDate(new Date());
+  const hex = new Hex(hexX, hexY, hexW, hexH, padding, startColor);
+  const updatePerSeconds = 10;
 
   let lastTime = null;
   let bgColor = hexToComplimentary(hex.color);
